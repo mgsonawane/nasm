@@ -1,0 +1,32 @@
+%macro substr 5
+	mov ebx,%1
+	add ebx,%2
+	mov esi,%1
+ll1:
+	mov edi,%3
+	xor eax,eax
+	mov ecx,%2
+	repe cmpsb
+	cmp byte[edi],0
+	je end
+	mov al,' '
+	repnz scasb
+	cmp ebx,esi
+	jle end1
+	jmp ll1 
+	
+end:
+	mov ecx,%4
+	mov eax,4
+	mov ebx,1
+	mov edx,9
+	int 0x80
+	ret
+end1:
+	mov ecx,%5
+	mov eax,4
+	mov ebx,1
+	mov edx,9
+	int 0x80
+	ret
+%endmacro	

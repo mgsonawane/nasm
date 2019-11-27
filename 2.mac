@@ -1,0 +1,14 @@
+%macro strr 3
+	mov ecx,%3
+	mov esi,%1
+	mov edi,%2
+	cld
+	rep movsb
+	
+	mov eax,4
+	mov ebx,1
+	mov ecx,%2
+	mov edx,%3
+	int 0x80
+
+%endmacro

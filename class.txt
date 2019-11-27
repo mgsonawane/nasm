@@ -1,0 +1,2 @@
+in div    always store upper value in eax 
+	the div reminder stores in edx

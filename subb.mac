@@ -1,0 +1,39 @@
+%macro substrr 4	
+         mov esi,%1
+
+lp1:
+	 mov edi,%2
+	 
+lp:  
+	mov al,byte[esi]
+        cmp al,byte[edi]
+        jnz ll1
+        inc esi
+        inc edi
+        cmp byte[edi],10	
+        jnz lp
+        jmp subb1
+ ll1:  cmp byte[esi]," "
+        inc esi
+        jz lp1
+        cmp byte[esi],10
+        jz notsubb
+        inc esi
+        jmp ll1
+ 
+notsubb :
+	mov ecx,%3
+	mov eax,4
+	mov ebx,1
+	mov edx,3
+  	int 0x80
+	ret
+subb1: 
+	mov ecx,%4
+	mov eax,4
+	mov ebx,1
+	mov edx,3
+  	int 0x80
+	ret
+
+%endmacro
